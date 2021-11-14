@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+  form(action='/search', method='POST') </br>
+    input(type='text', name = 'search', value='')
+    input(type='submit', value='search')
+
+
+  pre #{search_result}
