@@ -10,14 +10,102 @@ router.get('/', function(req, res, next) {
     res.render('index');
 });
 
+router.get('/dataenter', function(req, res, next){
+    res.redirect('/views/entering_in_data');
+})
 router.post('/search', function(req, res, next) {
     request.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${req.body.search}&apikey=5ae2e3f221c38a28845f05b6170581c1ae28d0679637cd84a6811dbb`, function callback(err, httpResponse, body){
+        //output dictionary
+        var output = []
+
+        //parse data from user input
         const info = JSON.parse(body)
+        console.log(req.body)
+
+        //declaring variables based off api call
         var name = req.body.search
         var longitude = info.lon
         var latitude = info.lat
+
+        //second api call to get specific info based off user input
         request.get(`https://api.opentripmap.com/0.1/en/places/autosuggest?name=${name}&radius=2400&lon=${longitude}&lat=${latitude}&apikey=5ae2e3f221c38a28845f05b6170581c1ae28d0679637cd84a6811dbb`, function callback(err, httpResponse, body){
-            res.render('index', {search_result: body}); //
+            console.log(body)
+            //parse data from api call
+            const info2 = JSON.parse(body)
+            // console.log(info2.features.length)
+
+            //nested loop to go through json chunk to find all locations that
+            //correlate with inputted user interests
+            for(let i = 0; i < info2.features.length; i++){
+                //split input by comma to parse through different interest areas accurately
+                let prop = info2.features[i].properties.kinds.split(',');
+                name_list = []
+                for(let j = 0; j < prop.length; j++){
+                    //data structure to be inputted into output with relevant data
+                    output_member = {}
+                    //list to hold all place names used to avoid duplicates
+                    
+                    // console.log(req.body.interest)
+                    // console.log(req.body.interest.includes("Churches"))
+                    //series of if statements to check if the location has an inputted interest
+                    if((prop[j] == "churches" || prop[j] == "religion" || prop[j] == "cathedrals" || prop[j] == "mosques") && req.body.interest.includes("Churches")){
+                        //if statement to check if location is alreay there, if so add the interest
+                        if(!name_list.includes(info2.features[i].properties.name)){
+                            output_member["Name"] = info2.features[i].properties.name
+                            output_member["Interest"] = 'Religion/Churches'
+                            output_member["Location"] = info2.features[i].geometry.coordinates
+                            output.push(output_member)
+                        }
+                        
+                        name_list.push(info2.features[i].properties.name)
+                        
+                    }else if(prop[j] == "historic_architecture" && req.body.interest.includes("Historic Architecture")){
+                        if(!name_list.includes(info2.features[i].properties.name)){
+                            output_member["Name"] = info2.features[i].properties.name
+                            output_member["Interest"] = 'Historic Architecture'
+                            output_member["Location"] = info2.features[i].geometry.coordinates
+                            output.push(output_member)
+                        }
+                        name_list.push(info2.features[i].properties.name)
+                        
+                    }else if((prop[j] == "foods" || prop[j] == "restaurants" ) && req.body.interest.includes("Restaurants/Food")){
+                        if(!name_list.includes(info2.features[i].properties.name)){
+                            output_member["Name"] = info2.features[i].properties.name
+                            output_member["Interest"] = 'Restaurants/Food'
+                            output_member["Location"] = info2.features[i].geometry.coordinates
+                            output.push(output_member)
+                        }
+                        name_list.push(info2.features[i].properties.name)
+                    }else if(prop[j] == "tourist_facilities" && req.body.interest.includes("Tourist Facilities")){
+                        if(!name_list.includes(info2.features[i].properties.name)){
+                            output_member["Name"] = info2.features[i].properties.name
+                            output_member["Interest"] = 'Tourist Facilities'
+                            output_member["Location"] = info2.features[i].geometry.coordinates
+                            output.push(output_member)
+                        }
+                        name_list.push(info2.features[i].properties.name)
+                    }else if(prop[j] == "skyscrapers" && req.body.interest.includes("Skyscrapers")){
+                        if(!name_list.includes(info2.features[i].properties.name)){
+                            output_member["Name"] = info2.features[i].properties.name
+                            output_member["Interest"] = 'Skyscrapers'
+                            output_member["Location"] = info2.features[i].geometry.coordinates
+                            output.push(output_member)
+                        }
+                        name_list.push(info2.features[i].properties.name)
+                    }else if(prop[j] == "museums" && req.body.interest.includes("Museums")){
+                        if(!name_list.includes(info2.features[i].properties.name)){
+                            output_member["Name"] = info2.features[i].properties.name
+                            output_member["Interest"] = 'Museums'
+                            output_member["Location"] = info2.features[i].geometry.coordinates
+                            output.push(output_member)
+                        }
+                        name_list.push(info2.features[i].properties.name)
+                    }
+                    
+                }
+            }
+            console.log(output)
+            res.render('index', {output});
         })
     })
 });
