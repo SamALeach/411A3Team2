@@ -14,14 +14,14 @@ router.get('/', function(req, res, next) {
 //     res.redirect('/views/entering_in_data');
 // })
 
-router.post('/create', (req, res, next) => {
-    const user = req.body
-    db.User.create({
-        username: user.username,
-        password = user.password,
-    })
-    // return res.redirect('/entering_in_data');
-});
+// router.post('/create', (req, res, next) => {
+//     const user = req.body
+//     db.User.create({
+//         username: user.username,
+//         password = user.password,
+//     })
+//     // return res.redirect('/entering_in_data');
+// });
 
 router.post('/search', function(req, res, next) {
     request.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${req.body.search}&apikey=5ae2e3f221c38a28845f05b6170581c1ae28d0679637cd84a6811dbb`, function callback(err, httpResponse, body){
@@ -58,7 +58,7 @@ router.post('/search', function(req, res, next) {
                     // console.log(req.body.interest)
                     // console.log(req.body.interest.includes("Churches"))
                     //series of if statements to check if the location has an inputted interest
-                    if((prop[j] == "churches" || prop[j] == "religion" || prop[j] == "cathedrals" || prop[j] == "mosques") && req.body.interest.includes("Churches")){
+                    if((prop[j] == "churches" || prop[j] == "religion" || prop[j] == "cathedrals" || prop[j] == "mosques") && req.body.interest.includes("Religion/Churches")){
                         //if statement to check if location is alreay there, if so add the interest
                         if(!name_list.includes(info2.features[i].properties.name)){
                             output_member["Name"] = info2.features[i].properties.name
