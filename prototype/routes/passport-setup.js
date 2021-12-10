@@ -24,6 +24,16 @@ passport.use(new GoogleStrategy({
         /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
             return done(err, user);
         }); */
-        return done(null, profile)
+        db.User.findOne({
+            where: {
+                username: username
+            }
+        }).then((user) => {
+            if(!user || !user.validPassword(password)){
+                return done(null, false, {errors: {'username or password': 'is invalid'}});
+            }
+            
+            return done(null, user);
+        }).catch(done);
     }
 ));
