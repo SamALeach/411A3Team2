@@ -1,11 +1,14 @@
+Challenges: 
 - Worked in a virtual architecture instead of pushing to GitHub as some of the project members were more familiar with that than the latter. 
+	- did work asynchronously through git, but ran into synchronization issues with some members not being able to push files correctly
 	- resulted in one big push at the end of the project deadline 
 
-Challenges: Being able to be on the same page for frameworks and catering to everyone's specialties
+- Being able to be on the same page for frameworks and catering to everyone's specialties
 	- divided the work to be able to maximize efficiency to successfully synchronize everyone's skills
 		- one full stack, two backend, two frontend
 
-- Challenged ourselves and added our own OAuth instead of a third party, as it felt more appropriate to be able to create a login for our own website rather than another one
+
+Challenged ourselves and added our own OAuth instead of a third party, as it felt more appropriate to be able to create a login for our own website rather than another one
 	 - possibly spent too much time doing this, drifting away from an opportunity to spend more time cleaning up the UI 
 
 
