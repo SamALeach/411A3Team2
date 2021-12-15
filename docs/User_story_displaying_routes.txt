@@ -1,0 +1,9 @@
+﻿User Story: Displaying Routes 
+
+
+The user will be able to click on a tab that shows different modes of transportation as well as the line number that they should follow for each destination chosen. 
+	- We will use a table
+		- Table includes line number, name, destination, transporation, travel time
+		- Can click a details hyperlink that pulls up more in-depth information about the travel
+
+Search functionality to have users be able to quickly pull up saved travel information that they need

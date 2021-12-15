@@ -1,19 +1,9 @@
 ﻿User Story: Data Display
-Once the user fills out our form (refer to Entering in data story), the map of their itinerary will be displayed on the screen that shows the route the user is recommended to take for their journey. The path would have the following properties:
-
+Once the user refers to the driving tour route, an interactive map will be displayed on the screen:
 
 * Start zoomed out
-   * The path would be a thick line that connects the different points we give to the user as destinations
-   * If there is an error in the processing of information we would tell the user to go back and re-enter data
-* Markers
-   * Along the path there will be markers similar to a google maps destination marker that will represent where the different stops on the trip are
-   * Each marker when clicked will display a text card with information (refer to Individual content cards story)
-   * Since many data processing errors would be apparent when the map is first displayed any individual errors with text cards would be unlikely 
-* Background
-   * The path would be along a sample map typically seen on google maps to make it as easy to understand as possible
-There will also be a big card on the right of the screen that displays different vital information of the trip such as:
-* Total Price
-   * Summation of the expected price for each stop
-   * This number can be not completely accurate depending on the spending/eating habits of the user but it can be a rough estimation of how much the base experience at each stop would cost
-* The list of stops 
-   * A concise list of stops we provide so that users do not have to click on each card to get the info
+* Able to move the map around by clicking and dragging 
+	- shows more information the more you zoom in 
+* Corresponding line numbers that is shown on the map for the destinations chosen by the user 
+	- Finds best route generated for each travel location 
+	

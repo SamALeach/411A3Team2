@@ -1,0 +1,7 @@
+﻿User Story: Home Page
+
+- User will encounter a login page, after successfully logging in user will be shown a homepage with a nav bar that directs user to different aspects of the website (consistent in all pages if possible)
+
+Basic home page that includes pictures of the landscape/making the website look like it is meant for travel purposes
+Weather will be shown of current location to add more functionalities
+	- possibly helpful for keeping the temperature into account when travelling locally

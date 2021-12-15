@@ -1,4 +1,4 @@
-Idea: Itinerary generator
+Idea: Travel Generator
 
 Description: a tool for travel-enthusiasts that would ask for the user’s interests, preferences, trip duration, no. of people they are travelling with, budget, etc. and devise an itinerary based on those parameters that would best fit the user’s travel needs.
 

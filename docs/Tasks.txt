@@ -1,8 +1,0 @@
-Ishika- form on main app (text box for each input centralized with a vertical margin)
-    aesthetically pleasing big green enter button
-
-Edison- Help dan with login and text cards
-
-Dan- Login section (OAuth), text cards (last step), display of data
-
-Sam- Parsing the data to return tasks based off input
